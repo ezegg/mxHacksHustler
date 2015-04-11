@@ -4,13 +4,17 @@ class UserController extends BaseController {
 
   public function register()
   {
-    $data = Input::only(['first_name','last_name','username','email','password']);
+    /*dd($nombre);*/
+
+    $data = Input::only(['nombre','email','saldoTotal','password']);
 
     $newUser = User::create($data);
+    $newUser->saldoLibre = Input::get('saldoTotal');
+    $newUser->save();
 
-    Mail::send('emails.welcome', array('first_name'=>Input::get('first_name')), function($message){
+    /*Mail::send('emails.welcome', array('first_name'=>Input::get('nombre')), function($message){
       $message->to(Input::get('email'), Input::get('first_name').' '.Input::get('last_name'))->subject('Welcome to AuthLaravelSimple');
-    });
+    });*/
 
     if($newUser){
       Auth::login($newUser);

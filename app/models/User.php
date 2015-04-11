@@ -12,7 +12,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
 
 	use UserTrait, RemindableTrait, EloquentTrait;
 
-	protected $fillable = ['first_name','last_name','username','email','password','avatar'];
+	protected $fillable = ['nombre','saldoTotal','email','password','avatar','numeroEmpresas', 'saldoLibre'];
 
 	/**
 	 * The database table used by the model.
@@ -49,5 +49,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
 
 
 	protected $hidden = array('password', 'remember_token');
+
+	public function inversiones(){
+    	return $this->belongsTo('Inversion');
+	}
+
+	public function compras(){
+	   return $this->hasMany('Compra');
+	}
+
+	public function ventas(){
+	   return $this->hasMany('Venta');
+	}
 
 }

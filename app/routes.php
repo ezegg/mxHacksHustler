@@ -7,8 +7,13 @@ Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@logout');
 
+Route::post('sign-up/{nombre}/{email}/{password}/{saldoTotal}', ['as' => 'register', 'uses' => 'UserController@register' ]);
+Route::post('buy', 'OperationsController@buy');
+Route::get('wallet/{id}', 'OperationsController@wallet');
+
+
 Route::get('showRegister', 'AuthController@registerUser'); //show view new user
-Route::post('sign-up', ['as' => 'register', 'uses' => 'UserController@register' ] );//register new user
+//Route::post('sign-up', ['as' => 'register', 'uses' => 'UserController@register' ] );//register new user
 
 Route::get('passRecovery', 'UserController@showPassRecovery');
 

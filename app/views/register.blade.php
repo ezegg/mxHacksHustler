@@ -11,18 +11,16 @@
     <div class="col-md-4 col-md-offset-4">
     {{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form']) }}
 
-      {{ Form::label('first_name', 'FirtsName', ['class' => 'sr-only']) }}
-      {{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'Firstname', 'autofocus' => '']) }}
+      {{ Form::label('nombre', 'nombre', ['class' => 'sr-only']) }}
+      {{ Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'nombre', 'autofocus' => '']) }}
 
 
-      {{ Form::label('last_name', 'Last Name', ['class' => 'sr-only']) }}
-      {{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name', 'autofocus' => '']) }}
+      {{ Form::label('email', 'email', ['class' => 'sr-only']) }}
+      {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'email', 'autofocus' => '']) }}
 
 
-      {{ Form::label('username', 'Username', ['class' => 'sr-only']) }}
-      {{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username', 'autofocus' => '']) }}
-
-      {{Form::text('email', null,['class' => 'form-control', 'placeholder' => 'Email', 'autofocus' => ''])}}
+      {{ Form::label('saldoTotal', 'saldoTotal', ['class' => 'sr-only']) }}
+      {{ Form::text('saldoTotal', null, ['class' => 'form-control', 'placeholder' => 'saldoTotal', 'autofocus' => '']) }}
 
       {{ Form::label('password', 'Password', ['class' => 'sr-only']) }}
       {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) }}

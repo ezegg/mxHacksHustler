@@ -123,7 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
-
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
@@ -190,7 +190,9 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
 	),
+	
 
 );
