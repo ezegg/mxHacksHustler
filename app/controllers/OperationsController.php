@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Input;
+use EtanNitram\FinanceApis\FinanceQuotes\AssetQuotes;
+
 class OperationsController extends BaseController {
 
   public function buy()
@@ -32,45 +35,68 @@ class OperationsController extends BaseController {
 
   }
 
-  public function showLogin()
-  {
-    if (Auth::check())
-    {
-      return Redirect::to('dash');
-    }
-    return View::make('login');
+  public function saveDataGraph(){
+
+    $symbols = Input::get('symbols');
+
+        if ($symbols === null || $symbols === '')
+            return array('status' => 400, 'message' => 'missing symbols paramater');
+
+        $quotes = new AssetQuotes();
+
+        // optional ability to set an API thirdparty vendor, like YAHOO, Markit, ect
+        $vendor = Input::get('vendor');
+
+        // set the vendor if an over ride was given
+        if ($vendor !== null && ! $quotes->setVendor($vendor)) {
+            return array('status' => 400, 'message' => 'invalid vendor');            
+        }
+
+         $array = (array)$quotes->getInfo($symbols);
+
+        //return $array;
+         
+
+         //return gettype(json_encode($array));
+
+        return $json  = Response::json(array(
+        'data' => $array),
+        200
+        );
+
+         //return (array)$quotes;
   }
 
-  public function postLogin()
-  {
-    $data = [
-      'email' => Input::get('email'),
-      'password' => Input::get('password')
-    ];
-
-    if (Auth::attempt($data, Input::get('remember')))
-    {
-      return Redirect::to('dash');
-    }
-    else{
-      return Redirect::back()->with('error_message', 'Invalid data')->withInput();
-    }
+  public function getData($name){
+    $data = DB::table('bolsa')
+      ->select('bolsa.nombreEmpresa', 'bolsa.valorEmpresa')
+      ->where('bolsa.nombreEmpresa', '=', $name)
+      ->get();
+    return Response::json(array(
+        'error' => false,
+        'data' => $data),
+        200
+    );
 
   }
 
-  public function logout()
-  {
-    Auth::logout();
-    return Redirect::to('login')->with('error_message', 'Logged out correctly');
+  public function saveFinance(){
+
+    $nombreEmpresa = $_POST['nombreEmpresa'];
+    $valorEmpresa = $_POST['valorEmpresa'];
+
+    DB::table('bolsa')->insert(
+    array('nombreEmpresa' => $nombreEmpresa, 'valorEmpresa' => $valorEmpresa )
+    );
+    /*$data = ;
+    $bolsa->fill($data);
+    $bolsa->save();*/
   }
 
-  public function showWelcome()
-  {
-    return View::make('auth/dash');
+  public function getFinance(){
+
   }
 
-  public function registerUser()
-  {
-    return View::make('register');
-  }
+
+
 }

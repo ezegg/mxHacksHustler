@@ -12,14 +12,16 @@ class AuthController extends BaseController {
 
   public function postLogin()
   {
+
     $data = [
-      'email' => Input::get('email'),
-      'password' => Input::get('password')
+      'email' => $_POST['email'],
+      'password' => $_POST['password']
     ];
 
     if (Auth::attempt($data, Input::get('remember')))
-    {
-      return Redirect::to('dash');
+    { 
+      return "hola";
+      //return Redirect::to('dash');
     }
     else{
       return Redirect::back()->with('error_message', 'Invalid data')->withInput();

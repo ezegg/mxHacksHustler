@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'hustlerDB',
+			'database'  => 'HustleDB',
 			'username'  => 'root',
 			'password'  => 'root',
 			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',

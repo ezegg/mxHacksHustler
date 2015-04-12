@@ -10,6 +10,15 @@ Route::get('logout', 'AuthController@logout');
 Route::post('sign-up/{nombre}/{email}/{password}/{saldoTotal}', ['as' => 'register', 'uses' => 'UserController@register' ]);
 Route::post('buy', 'OperationsController@buy');
 Route::get('wallet/{id}', 'OperationsController@wallet');
+Route::get( 'finance-api', array( 'uses' => 'OperationsController@saveDataGraph' ));
+
+Route::get( 'dataEnterprise/{name}', array( 'uses' => 'OperationsController@getData' ));
+
+Route::post( 'saveFinance', array( 'uses' => 'OperationsController@saveFinance' ));
+Route::get( 'saveFinance/{nombreEmpresa}', array( 'uses' => 'OperationsController@getFinance' ));
+/*Route::get( 'finance-api', array( 'uses' => 'EtanNitram\FinanceApis\FinanceQuotes@show' ), function( $response ){
+    return $response;
+});*/
 
 
 Route::get('showRegister', 'AuthController@registerUser'); //show view new user
