@@ -19,7 +19,7 @@ class AuthController extends BaseController {
     ];
 
     if (Auth::attempt($data, Input::get('remember')))
-    { 
+    {
       return "hola";
       //return Redirect::to('dash');
     }

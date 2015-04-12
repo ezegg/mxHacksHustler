@@ -93,7 +93,12 @@ class OperationsController extends BaseController {
     $bolsa->save();*/
   }
 
-  public function getFinance(){
+  public function getFinance($name){
+    $data = DB::table('bolsa')
+      ->select( 'bolsa.valorEmpresa')
+      ->where('bolsa.nombreEmpresa', '=', $name)
+      ->get();
+    trader_sma( $data, 100);
 
   }
 
